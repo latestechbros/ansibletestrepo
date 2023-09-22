@@ -1,6 +1,6 @@
 ---
 - name: Fetch users List from Ansible Tower
-  hosts: 16.170.124.220
+  hosts: localhost
   gather_facts: false
   tasks:
     - name: Execute windowsaccount.ps1 file
