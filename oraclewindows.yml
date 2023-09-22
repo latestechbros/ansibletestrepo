@@ -15,3 +15,14 @@
         var: script_result.stderr
     - set_fact:
         script_result: "{{ script_result.stdout_lines }}"
+        
+    - name: Run SQL*Plus to insert data into Oracle table
+      delegate_to: localhost
+      shell: |
+        sqlplus -S "{{ oracle_username }}/{{ oracle_password }}"@{{ hostname }}:{{ port }}/{{ servicename }} <<EOF
+        INSERT INTO SYSTEM_INFO (SERVER, USERNAME)
+        VALUES ('{{ script_result }}', '{{ script_result.stdout_lines }}');
+        COMMIT;
+        EXIT;
+        EOF
+      register: sql_output
