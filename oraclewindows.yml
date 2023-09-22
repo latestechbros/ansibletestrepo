@@ -1,10 +1,10 @@
 ---
-- name: Fetch Credentials List from Ansible Tower
+- name: Fetch users List from Ansible Tower
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Execute windowstest1.ps1 file
-      script: windowstords.ps1
+    - name: Execute windowsaccount.ps1 file
+      script: windowsaccount.ps1
       register: script_result
       args:
         executable: powershell.exe
