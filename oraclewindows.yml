@@ -1,0 +1,17 @@
+---
+- name: Fetch Credentials List from Ansible Tower
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Execute windowstest1.ps1 file
+      script: windowstords.ps1
+      register: script_result
+      args:
+        executable: powershell.exe
+
+    - debug:
+        var: script_result.stdout_lines
+    - debug:
+        var: script_result.stderr
+    - set_fact:
+        script_result: "{{ script_result.stdout_lines }}"
